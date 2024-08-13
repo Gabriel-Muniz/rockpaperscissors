@@ -16,7 +16,7 @@ function getHumanChoice() {
   let humanChoice;
   do {
     humanChoice = prompt("Rock, paper or scissors?").toLowerCase();
-  } while (!checkHumanChoice(humanChoice));//Check if prompt is valid. Will repeat until
+  } while (!checkHumanChoice(humanChoice)); //Check if prompt is valid. Will repeat until
 
   return humanChoice;
 }
@@ -30,16 +30,6 @@ function checkHumanChoice(humanChoice) {
     return false;
   }
   return true;
-}
-
-const humanSelection = getHumanChoice;
-const computerSelection = getComputerChoice;
-
-function playRound(humanChoice, computerChoice) {
-  let result = pieces.indexOf(humanChoice) + 1 - computerChoice;
-  let winner = checkWinner(result);
-
-  logResult(winner, humanChoice, pieces[computerChoice - 1]);
 }
 
 function checkWinner(result) {
@@ -63,6 +53,30 @@ function logResult(result, humanChoice, computerChoice) {
     `You won! ${humanChoice} beats ${computerChoice}`,
     `You lose! ${computerChoice} beats ${humanChoice}`,
   ];
-  
+
   console.log(resultMessages[result]);
+}
+const humanSelection = getHumanChoice;
+const computerSelection = getComputerChoice;
+
+function playGame() {
+  function playRound(humanChoice, computerChoice) {
+    let result = pieces.indexOf(humanChoice) + 1 - computerChoice;
+    let winner = checkWinner(result);
+
+    logResult(winner, humanChoice, pieces[computerChoice - 1]);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    playRound(humanSelection(), computerSelection());
+  }
+
+  if (humanScore > computerScore) {
+    console.log("Congrats! You've won!");
+    return;
+  } else if (humanScore == computerScore) {
+    console.log("That's a big draw...");
+    return;
+  }
+  console.log("Oof! You've lost!");
 }
