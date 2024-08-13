@@ -1,3 +1,4 @@
+//Global score variables
 let humanScore = 0;
 let computerScore = 0;
 
@@ -15,20 +16,20 @@ function getHumanChoice() {
   let humanChoice;
   do {
     humanChoice = prompt("Rock, paper or scissors?").toLowerCase();
-  } while (checkHumanChoice(humanChoice));
+  } while (!checkHumanChoice(humanChoice));//Check if prompt is valid. Will repeat until
 
   return humanChoice;
 }
 
 function checkHumanChoice(humanChoice) {
   if (
-    humanChoice != "rock" &&
-    humanChoice != "paper" &&
-    humanChoice != "scissors"
+    humanChoice == "rock" &&
+    humanChoice == "paper" &&
+    humanChoice == "scissors"
   ) {
-    return true;
+    return false;
   }
-  return false;
+  return true;
 }
 
 const humanSelection = getHumanChoice;
@@ -37,8 +38,6 @@ const computerSelection = getComputerChoice;
 function playRound(humanChoice, computerChoice) {
   let result = pieces.indexOf(humanChoice) + 1 - computerChoice;
   let winner = checkWinner(result);
-
-  console.log(`Human choice: ${humanChoice} | Computer choice: ${computerChoice}`)
 
   logResult(winner, humanChoice, pieces[computerChoice - 1]);
 }
