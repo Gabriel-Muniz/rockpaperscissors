@@ -30,3 +30,40 @@ function checkHumanChoice(humanChoice) {
   }
   return false;
 }
+
+const humanSelection = getHumanChoice;
+const computerSelection = getComputerChoice;
+
+function playRound(humanChoice, computerChoice) {
+  let result = pieces.indexOf(humanChoice) + 1 - computerChoice;
+  let winner = checkWinner(result);
+
+  console.log(`Human choice: ${humanChoice} | Computer choice: ${computerChoice}`)
+
+  logResult(winner, humanChoice, pieces[computerChoice - 1]);
+}
+
+function checkWinner(result) {
+  if (result == 0) {
+    //Draw
+    return 0;
+  } else if (result == 1 || result == -2) {
+    //Win
+    humanScore++;
+    return 1;
+  } else {
+    //Lose
+    computerScore++;
+    return 2;
+  }
+}
+
+function logResult(result, humanChoice, computerChoice) {
+  let resultMessages = [
+    `That's a draw! Both choosed ${humanChoice}`,
+    `You won! ${humanChoice} beats ${computerChoice}`,
+    `You lose! ${computerChoice} beats ${humanChoice}`,
+  ];
+  
+  console.log(resultMessages[result]);
+}
