@@ -1,3 +1,6 @@
+let humanScore = 0;
+let computerScore = 0;
+
 // Get a random number from 0 to 3;
 let getRandomNumber = () => Math.floor(Math.random() * 3 + 1);
 // Get a choice between rock, paper and scissor using the random number
