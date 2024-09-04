@@ -59,17 +59,17 @@ function logResult(result, humanChoice, computerChoice) {
 const humanSelection = getHumanChoice;
 const computerSelection = getComputerChoice;
 
+function playRound(humanChoice, computerChoice) {
+  let result = pieces.indexOf(humanChoice) + 1 - computerChoice;
+  let winner = checkWinner(result);
+
+  logResult(winner, humanChoice, pieces[computerChoice - 1]);
+}
+
+
 function playGame() {
-  function playRound(humanChoice, computerChoice) {
-    let result = pieces.indexOf(humanChoice) + 1 - computerChoice;
-    let winner = checkWinner(result);
-
-    logResult(winner, humanChoice, pieces[computerChoice - 1]);
-  }
-
-  for (let i = 0; i < 5; i++) {
-    playRound(humanSelection(), computerSelection());
-  }
+  
+  playRound(humanSelection(), computerSelection());
 
   if (humanScore > computerScore) {
     console.log("Congrats! You've won!");
@@ -80,3 +80,11 @@ function playGame() {
   }
   console.log("Oof! You've lost!");
 }
+
+const buttons = document.querySelectorAll(".choices>.choose");
+
+buttons.forEach((btnChoice) => {
+  btnChoice.addEventListener('click', () => {
+    playRound(btnChoice.id, computerSelection());
+  })
+});
