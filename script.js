@@ -81,7 +81,7 @@ function playGame() {
   console.log("Oof! You've lost!");
 }
 
-const buttons = document.querySelectorAll(".choices>.choose");
+const buttons = document.querySelectorAll(".choices>.btn-choice");
 
 buttons.forEach((btnChoice) => {
   btnChoice.addEventListener('click', () => {

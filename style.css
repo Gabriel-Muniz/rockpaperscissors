@@ -1,0 +1,19 @@
+.wrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 30px;
+}
+.score{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  background-color: yellow;
+}
+.score > * {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
