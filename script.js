@@ -54,7 +54,7 @@ function logResult(result, humanChoice, computerChoice) {
     `You lose! ${computerChoice} beats ${humanChoice}`,
   ];
 
-  console.log(resultMessages[result]);
+  roundResult.textContent = resultMessages[result];
 }
 const humanSelection = getHumanChoice;
 const computerSelection = getComputerChoice;
@@ -86,5 +86,16 @@ const buttons = document.querySelectorAll(".choices>.btn-choice");
 buttons.forEach((btnChoice) => {
   btnChoice.addEventListener('click', () => {
     playRound(btnChoice.id, computerSelection());
+    updateScore();
   })
 });
+
+const roundResult = document.querySelector('.round-result');
+
+function updateScore() {
+  const outPlayerScore = document.querySelector('.player-score>.outScore');
+  const outComputerScore = document.querySelector('.computer-score>.outScore');
+  
+  outPlayerScore.textContent = humanScore;
+  outComputerScore.textContent = computerScore;
+}
