@@ -32,7 +32,7 @@ function checkHumanChoice(humanChoice) {
   return true;
 }
 
-function checkWinner(result) {
+function checkRoundWinner(result) {
   if (result == 0) {
     //Draw
     return 0;
@@ -61,14 +61,12 @@ const computerSelection = getComputerChoice;
 
 function playRound(humanChoice, computerChoice) {
   let result = pieces.indexOf(humanChoice) + 1 - computerChoice;
-  let winner = checkWinner(result);
+  let winner = checkRoundWinner(result);
 
   logResult(winner, humanChoice, pieces[computerChoice - 1]);
 }
 
-
 function playGame() {
-  
   playRound(humanSelection(), computerSelection());
 
   if (humanScore > computerScore) {
@@ -84,18 +82,40 @@ function playGame() {
 const buttons = document.querySelectorAll(".choices>.btn-choice");
 
 buttons.forEach((btnChoice) => {
-  btnChoice.addEventListener('click', () => {
+  btnChoice.addEventListener("click", () => {
     playRound(btnChoice.id, computerSelection());
     updateScore();
-  })
+
+    if (checkGameWinner()) {
+      disableButtons();
+    }
+  });
 });
 
-const roundResult = document.querySelector('.round-result');
+const roundResult = document.querySelector(".round-result");
 
 function updateScore() {
-  const outPlayerScore = document.querySelector('.player-score>.outScore');
-  const outComputerScore = document.querySelector('.computer-score>.outScore');
-  
+  const outPlayerScore = document.querySelector(".player-score>.outScore");
+  const outComputerScore = document.querySelector(".computer-score>.outScore");
+
   outPlayerScore.textContent = humanScore;
   outComputerScore.textContent = computerScore;
+}
+
+function checkGameWinner() {
+  const gameWinner = document.querySelector(".game-result");
+
+  if (!(humanScore == 5 || computerScore == 5)) {
+    return false;
+  }
+  gameWinner.textContent =
+    humanScore == 5 ? "CONGRATS! You won!" : "Oh nooo... You lose D:";
+
+  return true;
+}
+
+function disableButtons() {
+  buttons.forEach((btn) => {
+    btn.disabled = true;
+  });
 }
