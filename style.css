@@ -1,5 +1,11 @@
+html{
+  height: 100vh;
+}
 body{
+  display: flex;
+  flex-direction: column;
   margin: 0;
+  height: 100vh;
 }
 .header{
   background-color: #283818;
@@ -10,10 +16,10 @@ body{
   align-items: center;
 }
 .wrapper{
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
 }
 .score{
@@ -41,7 +47,8 @@ body{
   height: 200px;
   background-color: #889878;
 }
-.btn-choice{
+.btn-choice,
+.btn-reset{
   background-color: #283818;
   color: #889878;
   border: none;
@@ -49,10 +56,38 @@ body{
   padding: 4px 8px;
   font-size: 20px;
   font-weight: bold;
+  box-shadow: none;
+  transition: border-radius 0.25s, transform 0.25s, box-shadow 0.25s;
 }
-.btn-choice:hover{
+.btn-choice:hover,
+.btn-reset:hover{
+  box-shadow: 0px 5px #28381850; 
+  transform: translate(0, -5px);
   background-color: #b0c0a0;
   border-radius: 12px;
   color: #283818;
   cursor: pointer;
+}
+.results{
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #b0c0a0;
+}
+.footer{
+  background-color: #283818;
+  color: #889878;
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.btn-reset:hover{
+  background-color: #889878;
+  box-shadow: 0px 5px #283818aa;
 }
