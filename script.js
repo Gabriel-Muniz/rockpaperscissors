@@ -88,6 +88,12 @@ buttons.forEach((btnChoice) => {
 
     if (checkGameWinner()) {
       disableButtons();
+
+
+      gameWinner.textContent =
+        humanScore == 5 ? "CONGRATS! You won!" : "Oh nooo... You lose D:";
+      resetButton();
+      roundResult.textContent = "";
     }
   });
 });
@@ -103,13 +109,9 @@ function updateScore() {
 }
 
 function checkGameWinner() {
-  const gameWinner = document.querySelector(".game-result");
-
   if (!(humanScore == 5 || computerScore == 5)) {
     return false;
   }
-  gameWinner.textContent =
-    humanScore == 5 ? "CONGRATS! You won!" : "Oh nooo... You lose D:";
 
   return true;
 }
@@ -119,3 +121,26 @@ function disableButtons() {
     btn.disabled = true;
   });
 }
+
+function enableButtons(){
+  buttons.forEach((btn) => {
+    btn.disabled = false;
+  })
+}
+const gameWinner = document.querySelector(".game-result");
+const resultContainer = document.querySelector('.results');
+const resetGame = document.querySelector(".btn-reset");
+resetGame.remove();
+
+function resetButton() {
+  resultContainer.append(resetGame);
+}
+
+resetGame.addEventListener('click', () => {
+  humanScore = 0;
+  computerScore = 0;
+  enableButtons()
+  updateScore();
+  resetGame.remove();
+  gameWinner.textContent = '';
+})
