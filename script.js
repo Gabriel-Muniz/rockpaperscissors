@@ -15,3 +15,15 @@ function getComputerChoice() {
             break;
     }
 }
+
+function getHumanChoice() {
+    let humanChoice;
+    do {
+        humanChoice = prompt("Choose your weapon").toLowerCase();
+
+    } while (humanChoice !== 'rock'
+    && humanChoice !== 'paper'
+    && humanChoice !== 'scissors');
+
+    return humanChoice;
+}
