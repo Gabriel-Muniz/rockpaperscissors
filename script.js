@@ -23,7 +23,48 @@ function getHumanChoice() {
 
     } while (humanChoice !== 'rock'
     && humanChoice !== 'paper'
-    && humanChoice !== 'scissors');
+        && humanChoice !== 'scissors');
 
     return humanChoice;
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(inHumanChoice, inComputerChoice) {
+    let convertedHumanChoice = convertChoice(inHumanChoice);
+    let convertedComputerChoice = convertChoice(inComputerChoice);
+
+    console.log(getResult(convertedHumanChoice, convertedComputerChoice));
+}
+
+function getResult(inHumanChoice, inComputerChoice) {
+    let roundResult = inHumanChoice - inComputerChoice;
+
+    switch (roundResult) {
+        case 0:
+            return "draw"
+            break;
+        case 1:
+        case -2:
+            return "win"
+            break;
+        case -1:
+        case 2:
+            return "loss"
+        default:
+            break;
+    }
+}
+
+
+function convertChoice(choice) {
+    if (choice == 'rock') {
+        return 0;
+    }
+    else if (choice == 'paper') {
+        return 1;
+    } else {
+        return 2;
+    }
 }
