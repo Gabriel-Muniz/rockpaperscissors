@@ -35,7 +35,29 @@ function playRound(inHumanChoice, inComputerChoice) {
     let convertedHumanChoice = convertChoice(inHumanChoice);
     let convertedComputerChoice = convertChoice(inComputerChoice);
 
-    console.log(getResult(convertedHumanChoice, convertedComputerChoice));
+    switch (getResult(convertedHumanChoice, convertedComputerChoice)) {
+        case 'draw':
+            console.log("That's a draw!");
+            break;
+        case 'win':
+            console.log(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
+            humanScore++;
+            break;
+        case 'loss':
+            console.log(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
+            computerScore++
+            break;
+    
+        default:
+            break;
+    }
+}
+
+function capitalizeFirstLetter(text){
+    let firstLetter = text.substring(0,1).toUpperCase();
+    let remainingLetters = text.substring(1).toLowerCase();
+
+    return firstLetter + remainingLetters;
 }
 
 function getResult(inHumanChoice, inComputerChoice) {
