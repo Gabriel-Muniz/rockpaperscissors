@@ -28,33 +28,8 @@ function getHumanChoice() {
     return humanChoice;
 }
 
-let humanScore = 0;
-let computerScore = 0;
-
-function playRound(inHumanChoice, inComputerChoice) {
-    let convertedHumanChoice = convertChoice(inHumanChoice);
-    let convertedComputerChoice = convertChoice(inComputerChoice);
-
-    switch (getResult(convertedHumanChoice, convertedComputerChoice)) {
-        case 'draw':
-            console.log("That's a draw!");
-            break;
-        case 'win':
-            console.log(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
-            humanScore++;
-            break;
-        case 'loss':
-            console.log(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
-            computerScore++
-            break;
-    
-        default:
-            break;
-    }
-}
-
-function capitalizeFirstLetter(text){
-    let firstLetter = text.substring(0,1).toUpperCase();
+function capitalizeFirstLetter(text) {
+    let firstLetter = text.substring(0, 1).toUpperCase();
     let remainingLetters = text.substring(1).toLowerCase();
 
     return firstLetter + remainingLetters;
@@ -89,4 +64,38 @@ function convertChoice(choice) {
     } else {
         return 2;
     }
+}
+
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+
+    function playRound(inHumanChoice, inComputerChoice) {
+        let convertedHumanChoice = convertChoice(inHumanChoice);
+        let convertedComputerChoice = convertChoice(inComputerChoice);
+
+        switch (getResult(convertedHumanChoice, convertedComputerChoice)) {
+            case 'draw':
+                console.log("That's a draw!");
+                break;
+            case 'win':
+                console.log(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
+                humanScore++;
+                break;
+            case 'loss':
+                console.log(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
+                computerScore++
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    for (let i = 0; i < 5; i++) {
+        playRound(getHumanChoice(), getComputerChoice());
+    }
+
+    console.log(`You: ${humanScore} || Computer ${computerScore}`);
+
 }
