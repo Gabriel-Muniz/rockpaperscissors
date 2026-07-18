@@ -29,10 +29,7 @@ function getHumanChoice() {
 }
 
 function capitalizeFirstLetter(text) {
-    let firstLetter = text.substring(0, 1).toUpperCase();
-    let remainingLetters = text.substring(1).toLowerCase();
-
-    return firstLetter + remainingLetters;
+    return `${text[0].toUpperCase()}${text.slice(1)}`;
 }
 
 function getResult(inHumanChoice, inComputerChoice) {
