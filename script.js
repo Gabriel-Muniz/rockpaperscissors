@@ -74,11 +74,13 @@ function playRound(inHumanChoice, inComputerChoice) {
             break;
         case 'win':
             updateRoundLog(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
-            humanScore++;
+            scoreHandler()
+            updateScore()
             break;
         case 'loss':
             updateRoundLog(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
-            computerScore++
+            scoreHandler(false)
+            updateScore(false)
             break;
 
         default:
@@ -86,12 +88,26 @@ function playRound(inHumanChoice, inComputerChoice) {
     }
 }
 
-/* UI IMPLEMENTATION */
+let humanScore = 0;
+let computerScore = 0;
 
+const scoreHandler = (isPlayer = true) => {
+    return (isPlayer) ? humanScore++ : computerScore++;
+}
+
+/* UI IMPLEMENTATION */
 const choiceBtn = document.querySelectorAll(".choice-btn");
 const roundLog = document.querySelector('.round-log');
 
 const updateRoundLog = (string) => { roundLog.textContent = string };
+
+const updateScore = (isPlayer = true) => {
+    const outPlayerScore = document.querySelector('.player-section>.score');
+    const outComputerScore = document.querySelector('.computer-section>.score');
+
+    isPlayer ? outPlayerScore.textContent = humanScore :
+        outComputerScore.textContent = computerScore
+}
 
 choiceBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
