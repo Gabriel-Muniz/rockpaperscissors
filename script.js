@@ -70,14 +70,14 @@ function playRound(inHumanChoice, inComputerChoice) {
     switch (getResult(convertedHumanChoice, convertedComputerChoice)) {
         case 'draw':
             console.log(convertedComputerChoice, convertedHumanChoice)
-            console.log("That's a draw!");
+            updateRoundLog("That's a draw!");
             break;
         case 'win':
-            console.log(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
+            updateRoundLog(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
             humanScore++;
             break;
         case 'loss':
-            console.log(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
+            updateRoundLog(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
             computerScore++
             break;
 
@@ -89,6 +89,9 @@ function playRound(inHumanChoice, inComputerChoice) {
 /* UI IMPLEMENTATION */
 
 const choiceBtn = document.querySelectorAll(".choice-btn");
+const roundLog = document.querySelector('.round-log');
+
+const updateRoundLog = (string) => { roundLog.textContent = string };
 
 choiceBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
