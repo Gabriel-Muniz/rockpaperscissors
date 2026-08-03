@@ -69,7 +69,6 @@ function playRound(inHumanChoice, inComputerChoice) {
 
     switch (getResult(convertedHumanChoice, convertedComputerChoice)) {
         case 'draw':
-            console.log(convertedComputerChoice, convertedHumanChoice)
             updateRoundLog("That's a draw!");
             break;
         case 'win':
@@ -113,10 +112,8 @@ const winnerHandler = () => {
     const replayBtn = document.createElement('button');
 
     if (humanScore > computerScore) {
-        console.log('alo')
         winnerContainer.textContent = `Congrats you won!`
     } else {
-        console.log('alo')
         winnerContainer.textContent = `The computer got you this time. Wanna try again?`
     }
 
