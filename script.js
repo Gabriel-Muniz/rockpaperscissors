@@ -99,13 +99,18 @@ const scoreHandler = (isPlayer = true) => {
 const choiceBtn = document.querySelectorAll(".choice-btn");
 const roundLog = document.querySelector('.round-log');
 
-const checkWinner = () => {    
+const checkWinner = () => {
     return (humanScore != 5 && computerScore !== 5) ? false : true;
 }
 
 const winnerHandler = () => {
     const winnerContainer = document.createElement('div');
+    winnerContainer.classList.add('winner-container')
     const gameContainer = document.querySelector('.game-container');
+
+    const replayContainer = document.createElement('div');
+    replayContainer.classList.add('replay-container')
+    const replayBtn = document.createElement('button');
 
     if (humanScore > computerScore) {
         console.log('alo')
@@ -116,9 +121,29 @@ const winnerHandler = () => {
     }
 
     gameContainer.append(winnerContainer);
+    winnerContainer.append(replayContainer)
+
     choiceBtn.forEach(btn => {
         btn.disabled = true;
     })
+
+
+
+    replayBtn.addEventListener('click', () => {
+        resetScore();
+
+        gameContainer.removeChild(winnerContainer);
+        winnerContainer.textContent = '';
+
+        updateRoundLog('Choose your weapon!')
+
+        choiceBtn.forEach(btn => {
+            btn.disabled = false;
+        })
+    })
+
+    replayBtn.textContent = "Play again"
+    replayContainer.append(replayBtn)
 }
 
 const updateRoundLog = (string) => { roundLog.textContent = string };
@@ -129,6 +154,17 @@ const updateScore = (isPlayer = true) => {
 
     isPlayer ? outPlayerScore.textContent = humanScore :
         outComputerScore.textContent = computerScore
+}
+
+const resetScore = () => {
+    humanScore = 0;
+    computerScore = 0;
+
+    const outComputerScore = document.querySelector('.player-section > .score');
+    const outPlayerScore = document.querySelector('.computer-section > .score');
+
+    outComputerScore.textContent = humanScore;
+    outPlayerScore.textContent = humanScore;
 }
 
 choiceBtn.forEach(btn => {
