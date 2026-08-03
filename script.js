@@ -63,36 +63,36 @@ function convertChoice(choice) {
     }
 }
 
-function playGame() {
-    let humanScore = 0;
-    let computerScore = 0;
+function playRound(inHumanChoice, inComputerChoice) {
+    let convertedHumanChoice = convertChoice(inHumanChoice);
+    let convertedComputerChoice = convertChoice(inComputerChoice);
 
-    function playRound(inHumanChoice, inComputerChoice) {
-        let convertedHumanChoice = convertChoice(inHumanChoice);
-        let convertedComputerChoice = convertChoice(inComputerChoice);
+    switch (getResult(convertedHumanChoice, convertedComputerChoice)) {
+        case 'draw':
+            console.log(convertedComputerChoice, convertedHumanChoice)
+            console.log("That's a draw!");
+            break;
+        case 'win':
+            console.log(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
+            humanScore++;
+            break;
+        case 'loss':
+            console.log(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
+            computerScore++
+            break;
 
-        switch (getResult(convertedHumanChoice, convertedComputerChoice)) {
-            case 'draw':
-                console.log("That's a draw!");
-                break;
-            case 'win':
-                console.log(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
-                humanScore++;
-                break;
-            case 'loss':
-                console.log(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
-                computerScore++
-                break;
-
-            default:
-                break;
-        }
+        default:
+            break;
     }
-
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-    }
-
-    console.log(`You: ${humanScore} || Computer ${computerScore}`);
-
 }
+
+/* UI IMPLEMENTATION */
+
+const choiceBtn = document.querySelectorAll(".choice-btn");
+
+choiceBtn.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playRound(btn.dataset.value, getComputerChoice());
+    })
+})
