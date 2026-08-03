@@ -99,6 +99,28 @@ const scoreHandler = (isPlayer = true) => {
 const choiceBtn = document.querySelectorAll(".choice-btn");
 const roundLog = document.querySelector('.round-log');
 
+const checkWinner = () => {    
+    return (humanScore != 5 && computerScore !== 5) ? false : true;
+}
+
+const winnerHandler = () => {
+    const winnerContainer = document.createElement('div');
+    const gameContainer = document.querySelector('.game-container');
+
+    if (humanScore > computerScore) {
+        console.log('alo')
+        winnerContainer.textContent = `Congrats you won!`
+    } else {
+        console.log('alo')
+        winnerContainer.textContent = `The computer got you this time. Wanna try again?`
+    }
+
+    gameContainer.append(winnerContainer);
+    choiceBtn.forEach(btn => {
+        btn.disabled = true;
+    })
+}
+
 const updateRoundLog = (string) => { roundLog.textContent = string };
 
 const updateScore = (isPlayer = true) => {
@@ -113,5 +135,8 @@ choiceBtn.forEach(btn => {
     btn.addEventListener('click', (e) => {
         e.preventDefault();
         playRound(btn.dataset.value, getComputerChoice());
+        if (checkWinner()) {
+            winnerHandler();
+        }
     })
 })
