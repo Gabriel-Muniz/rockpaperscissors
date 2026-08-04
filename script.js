@@ -69,15 +69,15 @@ function playRound(inHumanChoice, inComputerChoice) {
 
     switch (getResult(convertedHumanChoice, convertedComputerChoice)) {
         case 'draw':
-            updateRoundLog("That's a draw!");
+            updateRoundLog(`That's a draw! Both players chose ${inHumanChoice}!`);
             break;
         case 'win':
-            updateRoundLog(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}`);
+            updateRoundLog(`You win! ${capitalizeFirstLetter(inHumanChoice)} beats ${capitalizeFirstLetter(inComputerChoice)}!`);
             scoreHandler()
             updateScore()
             break;
         case 'loss':
-            updateRoundLog(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}`);
+            updateRoundLog(`You lose! ${capitalizeFirstLetter(inComputerChoice)} beats ${capitalizeFirstLetter(inHumanChoice)}!`);
             scoreHandler(false)
             updateScore(false)
             break;
