@@ -105,7 +105,7 @@ const checkWinner = () => {
 const winnerHandler = () => {
     const winnerContainer = document.createElement('div');
     winnerContainer.classList.add('winner-container')
-    const gameContainer = document.querySelector('.game-container');
+    const gameLog = document.querySelector('.game-log');
 
     const replayContainer = document.createElement('div');
     replayContainer.classList.add('replay-container')
@@ -118,7 +118,7 @@ const winnerHandler = () => {
         winnerContainer.textContent = `The computer got you this time. Wanna try again?`
     }
 
-    gameContainer.append(winnerContainer);
+    gameLog.append(winnerContainer);
     winnerContainer.append(replayContainer)
 
     choiceBtn.forEach(btn => {
@@ -130,7 +130,7 @@ const winnerHandler = () => {
     replayBtn.addEventListener('click', () => {
         resetScore();
 
-        gameContainer.removeChild(winnerContainer);
+        gameLog.removeChild(winnerContainer);
         winnerContainer.textContent = '';
 
         updateRoundLog('Choose your weapon!')
