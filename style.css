@@ -63,3 +63,104 @@ h6 {
 body {
   background-color: antiquewhite;
 }
+/* MY STYLES */
+body{
+    width: 100%;
+    align-items: center;
+}
+.game-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 500px;
+    gap: 15px;
+
+    color: #335;
+}
+.score-container{
+    display: flex;
+}
+.computer-section,
+.player-section{
+    display: flex;
+    width: 300px;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 50px;
+}
+.player-section>.score{
+    padding: 0 15px 0 20px;
+}
+.computer-section>.score{
+    padding: 0 20px 0 15px;
+}
+.score{
+    font-weight: bold;
+}
+.score-container > span{
+    display: flex;
+    align-items: center;
+    font-size: 50px;
+    padding: 0 10px;
+}
+.computer-section{
+    flex-direction: row-reverse;
+}
+.choice-btn{
+    width: 150px;
+    aspect-ratio: 3/1;
+
+    color: #335;
+    font-size: 24px;
+    font-weight: bold;
+
+    background-color: transparent;
+    border: 4px solid #335;
+    border-radius: 5px;
+}
+.choice-btn:hover{
+    background-color: #335;
+    color: antiquewhite;
+    border-radius: 10px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+button:disabled{
+    opacity: 0.1;
+    cursor: initial;
+    background-color: initial;
+}
+.round-log{
+    font-size: 24px;
+}
+.winner-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    gap: 20px;
+    
+    font-size: 32px;
+    font-weight: bold;
+}
+.replay-btn{
+    width: 200px;
+    height: 60px;
+    font-size: 30px;
+
+    border: 5px solid #335;
+    color: #335;
+    border-radius: 5px;
+    background-color: transparent;
+
+    transition: background-color 0.3s, color 1s ease-out;
+}
+.replay-btn:hover{
+    background-color: #335;
+    color: antiquewhite;
+    font-size: 24px;
+    text-transform: uppercase;
+}
