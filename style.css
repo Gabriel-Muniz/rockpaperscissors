@@ -136,7 +136,10 @@ body{
     color: antiquewhite;
     border-radius: 10px;
 }
-
+.choice-btn:active{
+    background-color: #223;
+    border: #223;
+}
 button:hover{
     cursor: pointer;
 }
