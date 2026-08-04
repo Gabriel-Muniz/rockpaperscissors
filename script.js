@@ -110,6 +110,7 @@ const winnerHandler = () => {
     const replayContainer = document.createElement('div');
     replayContainer.classList.add('replay-container')
     const replayBtn = document.createElement('button');
+    replayBtn.classList.add('replay-button')
 
     if (humanScore > computerScore) {
         winnerContainer.textContent = `Congrats you won!`
